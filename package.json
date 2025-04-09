@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Ai translate app",
   "license": "MIT",
-  "author": "DnzCgn",
+  "author": "DnzCgn (Farligbjoern)",
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
