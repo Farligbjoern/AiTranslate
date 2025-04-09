@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Translate</title>
+    <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+</head>
+
+<body>
+    <div class="status-container">
+        <button class="api-button" onclick="openModal()">
+            <i class="fas fa-key"></i>
+            Free API
+        </button>
+        <div class="connection-status" id="connectionStatus">
+            <i class="fas fa-wifi"></i>
+            <span>Online</span>
+        </div>
+    </div>
+
+    <div class="main1">
+        <div class="header-container">
+            <h1>AI Translate</h1>
+            <a href="https://github.com/Farligbjoern" class="github-link" target="_blank">
+                <i class="fab fa-github"></i>
+                Farligbjoern
+            </a>
+        </div>
+        <div class="error-message" id="errorMessage">
+            <div id="errorText"></div>
+            <button class="retry-button" onclick="retryTranslation()">Try Again</button>
+        </div>
+        <select id="targetLanguage">
+            <% Object.entries(languages).forEach(([code, name])=> { %>
+                <option value="<%= name %>">
+                    <%= name %> (<%= code %>)
+                </option>
+                <% }); %>
+        </select>
+        <div class="all_box">
+            <div class="box">
+                <span class="box-label">Source Text
+                    <div class="text-controls">
+                        <button class="control-button" id="micButton" title="Speak to record">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <button class="control-button" id="speakSourceButton" title="Listen to text">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                    </div>
+                </span>
+                <textarea id="sourceText"
+                    placeholder="Type or speak text to translate... (Supported all languages)"></textarea>
+            </div>
+            <div class="box">
+                <span class="box-label">Translation
+                    <div class="text-controls">
+                        <button class="control-button" id="speakTranslatedButton" title="Listen to translation">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                    </div>
+                </span>
+                <textarea id="translatedText" placeholder="Translation will appear here..." readonly></textarea>
+                <div id="loadingIndicator" class="loading-indicator">Translating...</div>
+            </div>
+        </div>
+        <div class="status-text" id="statusText"></div>
+
+    </div>
+
+    <div class="modal" id="apiModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h2>API Usage</h2>
+            <div class="api-docs">
+                <h3>Endpoint</h3>
+                <div class="code-header">HTTP Request</div>
+                <pre><code class="language-http">GET http://example.com/api/:language_code/:text</code></pre>
+
+                <h3>Parameters</h3>
+                <ul>
+                    <li><code>language_code</code>: Target language code (e.g., en-GB, tr-TR, fr-FR)</li>
+                    <li><code>text</code>: URL-encoded text to translate</li>
+                </ul>
+
+                <h3>Example Usage</h3>
+                <div class="endpoint-example">
+                    <p>For English translation:</p>
+                    <div class="code-header">HTTP Request</div>
+                    <pre><code class="language-http">GET http://example.com/api/en-GB/Hello%20World</code></pre>
+
+                    <p>For French translation:</p>
+                    <div class="code-header">HTTP Request</div>
+                    <pre><code class="language-http">GET http://example.com/api/fr-FR/Hello%20World</code></pre>
+                </div>
+
+                <h3>Response Format</h3>
+                <div class="code-header">JSON Response</div>
+                <pre><code class="language-json">{
+    "success": true,
+    "translation": "Bonjour le monde",
+    "source_language": "en-GB",
+    "target_language": "fr-FR"
+}</code></pre>
+
+                <h3>Error Response</h3>
+                <div class="code-header">JSON Error</div>
+                <pre><code class="language-json">{
+    "success": false,
+    "error": "Error message will be here"
+}</code></pre>
+
+                <h3>Code Examples</h3>
+                <div class="code-header">JavaScript (Fetch)</div>
+                <pre><code class="language-javascript">fetch('http://example.com/api/en-GB/Hello%20World')
+    .then(response => response.json())
+    .then(data => console.log(data.translation));</code></pre>
+
+                <div class="code-header">Python (Requests)</div>
+                <pre><code class="language-python">import requests
+import urllib.parse
+
+text = urllib.parse.quote("Hello World")
+response = requests.get(f'http://example.com/api/fr-FR/{text}')
+data = response.json()
+print(data['translation'])</code></pre>
+
+                <div class="code-header">cURL</div>
+                <pre><code class="language-bash">curl "http://example.com/api/en-GB/Hello%20World"</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/script.js"></script>
+</body>
+
+</html>
