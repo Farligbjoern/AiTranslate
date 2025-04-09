@@ -1,9 +1,3 @@
-## AiTranslate
-- A translation app that translates 90+ languages ​​using Gemini.
-- In the .env file, open a section like `GEMINI_API_KEY`.
-```
-GEMINI_API_KEY=YOURAPIKEY
-```
 # AI Translation API Documentation
 
 ## Endpoints
@@ -62,6 +56,31 @@ Checks the API service status.
   "version": "1.0"
 }
 ```
+
+## Environment Configuration
+
+### Required Environment Variables
+
+Create a `.env` file in the root directory with the following configuration:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key_here
+PORT=3000              # Optional, defaults to 3000
+```
+
+### Setting Up Environment Variables
+
+1. Create a new file named `.env` in the project root directory
+2. Add your Gemini API key to the file
+3. Optionally configure the port (default is 3000)
+
+Example `.env` file:
+```env
+GEMINI_API_KEY=AI8x9....your_actual_api_key....3kP2
+PORT=3000
+```
+
+**Note:** Never commit your `.env` file to version control. Add it to `.gitignore`.
 
 ## Error Responses
 
