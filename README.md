@@ -4,3 +4,79 @@
 ```
 GEMINI_API_KEY=YOURAPIKEY
 ```
+# AI Translation API Documentation
+
+## Endpoints
+
+### 1. Translation Endpoint
+**POST** `/translate`
+
+Translates text to the specified target language.
+
+**Request Body:**
+```json
+{
+  "text": "Text to translate",
+  "targetLanguage": "Target language name"
+}
+```
+
+**Response:**
+```json
+{
+  "translation": "Translated text",
+  "status": "success"
+}
+```
+
+### 2. API Translation Endpoint
+**GET** `/api/:language_code/:text`
+
+Translates text using URL parameters.
+
+**Parameters:**
+- `language_code`: The target language code (e.g., "en", "es", "fr")
+- `text`: URL-encoded text to translate
+
+**Response:**
+```json
+{
+  "success": true,
+  "translation": "Translated text",
+  "source_language": "tr-TR",
+  "target_language": "target-language-code"
+}
+```
+
+### 3. Health Check Endpoint
+**GET** `/health`
+
+Checks the API service status.
+
+**Response:**
+```json
+{
+  "status": "ok",
+  "timestamp": "ISO timestamp",
+  "service": "AI Translation Service",
+  "version": "1.0"
+}
+```
+
+## Error Responses
+
+The API may return the following error responses:
+
+```json
+{
+  "error": "Error message",
+  "errorType": "error_type",
+  "status": "error"
+}
+```
+
+Common error types:
+- `timeout`: Request timeout
+- `network`: Network connection issues
+- `api_key`: API key related errors
+- `unknown`: Other errors
