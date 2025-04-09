@@ -1,0 +1,19 @@
+{
+  "name": "ai_translate",
+  "version": "1.0.0",
+  "description": "Ai translate app",
+  "license": "MIT",
+  "author": "DnzCgn",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  }
+}
