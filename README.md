@@ -1,4 +1,12 @@
-# AI Translation API Documentation
+# AiTranslate
+
+A powerful translation application that supports 90+ languages using Google's Gemini AI technology. This application provides fast and accurate translations with a simple interface.
+
+## Project Overview
+- Supports 90+ languages
+- Powered by Gemini AI
+- Real-time translation
+- Simple and intuitive interface
 
 ## Endpoints
 
@@ -57,7 +65,22 @@ Checks the API service status.
 }
 ```
 
-## Environment Configuration
+## Setup and Configuration
+
+### Environment Variables
+Create a `.env` file in the root directory and add your Gemini API key:
+
+```env
+GEMINI_API_KEY=YOURAPIKEY
+```
+
+To get started:
+1. Create a new file named `.env`
+2. Add your Gemini API key using the format above
+3. Replace `YOURAPIKEY` with your actual Gemini API key
+4. Save the file in the project root directory
+
+**Important:** Keep your API key secret and never share it publicly.
 
 ### Required Environment Variables
 
